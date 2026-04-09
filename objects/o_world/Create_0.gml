@@ -37,7 +37,7 @@ global.player_moveable_global = true
 global.border_mode = BORDER_MODE.OFF
 global.console_enabled = true
 
-global.party_limit = 3 // set to undefined for unlimited party members
+global.party_limit = 4// set to undefined for unlimited party members
 global.slide_speed = 5
 
 { // emmiters
