@@ -7,7 +7,7 @@ var __roll = lerp(80, 0, ui_main_lerp)
 
 var party_count = array_length(global.party_names);
 
-var panel_width  = (party_count == 4 ? 160 : 213);
+var panel_width  = 160;
 var panel_height = 70;
 var button_width = panel_width - 2;
 
@@ -59,15 +59,15 @@ draw_sprite_ext(spr_pixel, 0, xoff, box_base_y, 2, panel_height-1, 0, col, 1)
     }
     
     // draw the name
-    var __name = string_upper(party_getname(member_name, false))
-    var __name_font = global.font_name[0]
-    if string_length(__name) > 4
-        __name_font = global.font_name[1]
-    if string_length(__name) > 5
-        __name_font = global.font_name[2]
+    //var __name = string_upper(party_getname(member_name, false))
+    //var __name_font = global.font_name[0]
+    //if string_length(__name) > 4
+    //    __name_font = global.font_name[1]
+    //if string_length(__name) > 5
+    //    __name_font = global.font_name[2]
     
-    draw_set_font(__name_font) 
-    if party_count != 4 draw_text_transformed(51 + xoff, box_base_y + 11, __name, 1, 1, 0)
+    //draw_set_font(__name_font)
+    //draw_text_transformed(51 + xoff, box_base_y + 11, __name, 1, 1, 0)
     
     // draw the hp bar
     var health_coeff = party_getdata(member_name, "hp") / party_getdata(member_name, "max_hp")
@@ -127,12 +127,9 @@ draw_text_transformed(xoff + panel_width - 8, box_base_y + 9, health_max, 1, 1, 
         
         for (var j = 0; j < array_length(buttons); ++j) {
             var __spr = buttons[j].sprite
-            var btn_spacing = (party_count == 4 ? 31 : 35);
+            var btn_spacing = 31;
             var __x_off = (button_width/2) - floor(array_length(buttons) * btn_spacing / 2) + j * btn_spacing;
             var __selection = party_button_selection[i]
-            
-            if array_length(buttons) != 5 // actually center them
-                __x_off = 109 - floor(array_length(buttons)*btn_spacing/2) + j*btn_spacing
             
             draw_sprite_ext(spr_pixel, 0, __x_off, 1, 31, 25, 0, c_black, 1)
             if sprite_exists(__spr)
