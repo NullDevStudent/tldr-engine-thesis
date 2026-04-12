@@ -6,6 +6,7 @@ function party_init() {
     party_m_initialize("susie", party_m_susie)
     party_m_initialize("ralsei", party_m_ralsei)
     party_m_initialize("noelle", party_m_noelle)
+	party_m_initialize("fire cat", party_m_firecat)
     
 	global.party_names = []
 }
@@ -379,4 +380,67 @@ function party_m_noelle(_initialized_name) : party_m(_initialized_name) construc
 		spare: [spr_bnoelle_act, "idle", 1],
 		attack_eff: spr_bnoelle_attackeff,
 	}
+}
+
+function party_m_firecat(_initialized_name) : party_m(_initialized_name) constructor {
+    name = "Fire Cat"
+    action_letter = "party_firecat_action_letter"
+    obj = o_actor_fire_cat_boi
+    
+    // colors
+    color = c_white
+    darkcolor = c_white
+    iconcolor = c_white
+    
+    // stats
+    lv =    save_get("chapter")
+    desc =    "party_kris_desc"
+    power_stats = [
+        "???",
+        "???",
+    ]
+    
+    max_hp =    party_m_calculate_hp(7300, lv)
+    hp =        max_hp
+    attack =    100
+    defense =    100
+    magic =        40
+    element_resistance = {
+    }
+    
+    // inventory
+    weapon = new item_wlb_twistedsword()
+    armor1 = new item_a_shadowmantle()
+    armor2 = new item_a_twin_ribbon()
+    spells = [
+        new item_s_act()
+    ]
+    
+    // sprites
+    s_name = "fire cat"
+    s_state =        ""
+    s_substate =    ""
+    s_icon =        spr_ui_knight_icon
+    s_icon_ow =        spr_ui_knight_head
+    s_icon_weapon = spr_ui_menu_weapon_katana
+    s_battle_intro =    1 // 1 for attack, 0 for full intro    
+    
+    battle_sprites = { // [sprite, whether stop at the end (or change to what sprite), (image speed of the upcoming sprite)]
+        act: [spr_bknight_act, true], 
+        actready: spr_bvessel_actready,
+        actend: [spr_bvessel_actend, "idle", 1],
+        attack: [spr_bknight_attack, true],
+        attackready: spr_bknight_attackready,
+        defeat: spr_bvessel_defeat,
+        defend: [spr_bknight_defend, true],
+        hurt: spr_bknight_hurt,
+        idle: spr_bknight_idle,
+        intro: [spr_bkris_intro, true], //unneeded
+        introb: spr_bkris_introb, //unneeded
+        itemuse: [spr_bknight_item, "idle", 1],
+        itemready: spr_bknight_idle,
+        victory: [spr_bknight_idle, true],
+        spare: [spr_bknight_act, "idle", 1],
+        attack_eff: spr_bvessel_attackeff,
+    }
 }
