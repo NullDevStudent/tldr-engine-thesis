@@ -420,7 +420,7 @@ function party_m_firecat(_initialized_name) : party_m(_initialized_name) constru
     s_name = "fire cat"
     s_state =        ""
     s_substate =    ""
-    s_icon =        spr_ui_knight_icon
+    s_icon =        
     s_icon_ow =        spr_ui_knight_head
     s_icon_weapon = spr_ui_menu_weapon_katana
     s_battle_intro =    1 // 1 for attack, 0 for full intro    

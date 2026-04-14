@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"o_fire_cat_boi_running_right",
+  "%Name":"spr_fire_cat_boi_running_right",
   "bboxMode":0,
   "bbox_bottom":68,
   "bbox_left":12,
@@ -24,7 +24,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"2d44b06b-7ee0-49d9-a0f6-3e04336e9668","blendMode":0,"displayName":"default","isLocked":false,"name":"2d44b06b-7ee0-49d9-a0f6-3e04336e9668","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"o_fire_cat_boi_running_right",
+  "name":"spr_fire_cat_boi_running_right",
   "nineSlice":null,
   "origin":0,
   "parent":{
@@ -36,7 +36,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"o_fire_cat_boi_running_right",
+    "%Name":"spr_fire_cat_boi_running_right",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -60,7 +60,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"o_fire_cat_boi_running_right",
+    "name":"spr_fire_cat_boi_running_right",
     "playback":1,
     "playbackSpeed":5.0,
     "playbackSpeedType":0,
@@ -72,16 +72,16 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0a4c209a-e844-492a-a8f6-7cd4ef6d0574","path":"sprites/o_fire_cat_boi_running_right/o_fire_cat_boi_running_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0a4c209a-e844-492a-a8f6-7cd4ef6d0574","path":"sprites/spr_fire_cat_boi_running_right/spr_fire_cat_boi_running_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"3f22c19a-52b7-4b38-a0b9-1a5ba503bfad","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5b112043-4c5d-4ea4-aa3b-f9075f55ce53","path":"sprites/o_fire_cat_boi_running_right/o_fire_cat_boi_running_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5b112043-4c5d-4ea4-aa3b-f9075f55ce53","path":"sprites/spr_fire_cat_boi_running_right/spr_fire_cat_boi_running_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"b1f8dfa8-4f6d-4a85-84fa-931114b5d0ae","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"34786cb6-d920-4ebb-8d0d-a02293ff6cff","path":"sprites/o_fire_cat_boi_running_right/o_fire_cat_boi_running_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"34786cb6-d920-4ebb-8d0d-a02293ff6cff","path":"sprites/spr_fire_cat_boi_running_right/spr_fire_cat_boi_running_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"a5761803-a401-4ec2-8c8f-d49460440d44","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"33489cc3-c027-4d3d-9b1e-ef8d92bcff19","path":"sprites/o_fire_cat_boi_running_right/o_fire_cat_boi_running_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"33489cc3-c027-4d3d-9b1e-ef8d92bcff19","path":"sprites/spr_fire_cat_boi_running_right/spr_fire_cat_boi_running_right.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"a5449b9f-acc8-47fa-b028-031432a86ecf","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

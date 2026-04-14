@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"o_fire_cat_boi_front",
-    "path":"sprites/o_fire_cat_boi_front/o_fire_cat_boi_front.yy",
+    "name":"spr_fire_cat_boi_front",
+    "path":"sprites/spr_fire_cat_boi_front/spr_fire_cat_boi_front.yy",
   },
   "spriteMaskId":null,
   "visible":true,
