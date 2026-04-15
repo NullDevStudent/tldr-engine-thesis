@@ -28,8 +28,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"outside battle",
-    "path":"folders/Sprites/actors/fire cat/outside battle.yy",
+    "name":"movement",
+    "path":"folders/Sprites/actors/fire cat/movement.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
