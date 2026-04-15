@@ -383,7 +383,7 @@ function party_m_noelle(_initialized_name) : party_m(_initialized_name) construc
 }
 
 function party_m_firecat(_initialized_name) : party_m(_initialized_name) constructor {
-    name = "party_firecat_name"
+    name = "firecat"
     action_letter = "party_firecat_action_letter"
     obj = o_actor_firecat
     
