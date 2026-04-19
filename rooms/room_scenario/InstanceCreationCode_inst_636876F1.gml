@@ -106,7 +106,7 @@ execute_code = function() {
     	})
     }
     else {
-    	cutscene_dialogue("You have finished this part.{p}{c}Try answer the other quizzes.")
+    	cutscene_dialogue("You have finished this part.{p}{c}Reload game if you wish to try others.")
     }
     
 	cutscene_player_canmove(true)

@@ -1,4 +1,4 @@
 text = [
 	"Multiple choice in object testing",
-	"Answer all questions, and pray it works."
+	"Pick one of the three quizzes. You can only complete one."
 ]
