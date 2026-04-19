@@ -403,9 +403,9 @@ function party_m_firecat(_initialized_name) : party_m(_initialized_name) constru
     
     max_hp =    party_m_calculate_hp(85, lv)
     hp =        max_hp
-    attack =    120
-    defense =    12
-    magic =        8
+    attack =    12
+    defense =    0
+    magic =      0
     element_resistance = {
     }
     
@@ -423,7 +423,7 @@ function party_m_firecat(_initialized_name) : party_m(_initialized_name) constru
     s_substate = ""
     s_icon = spr_ui_default_icon
 	s_icon_ow =	spr_ui_default_head
-	s_icon_weapon = spr_ui_menu_weapon_axe
+	s_icon_weapon = spr_ui_menu_weapon_sword
 	s_battle_intro =	1 // 1 for attack, 0 for full intro   
     
     battle_sprites = { // [sprite, whether stop at the end (or change to what sprite), (image speed of the upcoming sprite)]
@@ -437,7 +437,7 @@ function party_m_firecat(_initialized_name) : party_m(_initialized_name) constru
 		hurt: spr_bsusie_hurt,
 		idle: spr_bsusie_idle,
 		intro: spr_susie_right,
-		introb: spr_susie_right,
+		introb: spr_firecat_right,
 		itemuse: [spr_bsusie_item, "idle", 1],
 		itemready: spr_bsusie_itemready,
 		spell: [spr_bsusie_spell, "idle", 1],

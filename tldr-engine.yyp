@@ -459,6 +459,7 @@
     {"id":{"name":"room_init","path":"rooms/room_init/room_init.yy",},},
     {"id":{"name":"room_lb_dark_lighting","path":"rooms/room_lb_dark_lighting/room_lb_dark_lighting.yy",},},
     {"id":{"name":"room_save_select","path":"rooms/room_save_select/room_save_select.yy",},},
+    {"id":{"name":"room_scenario","path":"rooms/room_scenario/room_scenario.yy",},},
     {"id":{"name":"room_shop","path":"rooms/room_shop/room_shop.yy",},},
     {"id":{"name":"room_test_cutscene","path":"rooms/room_test_cutscene/room_test_cutscene.yy",},},
     {"id":{"name":"room_test_inventory","path":"rooms/room_test_inventory/room_test_inventory.yy",},},
@@ -1498,6 +1499,7 @@
     {"roomId":{"name":"room_gameover","path":"rooms/room_gameover/room_gameover.yy",},},
     {"roomId":{"name":"room_shop","path":"rooms/room_shop/room_shop.yy",},},
     {"roomId":{"name":"room_lb_dark_lighting","path":"rooms/room_lb_dark_lighting/room_lb_dark_lighting.yy",},},
+    {"roomId":{"name":"room_scenario","path":"rooms/room_scenario/room_scenario.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
