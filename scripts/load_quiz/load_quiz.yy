@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"load_quiz",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"load_quiz",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
