@@ -46,6 +46,32 @@ item_categories = [
             room_ex_light_world,
             room_ex_multi_path,
         ]
-    }
+    },
+	{
+		name: "quiz",
+		keybind: ord("Q"),
+		color: c_orange,
+		items: [
+			room_scenario,
+			room_quiz_1,
+			room_quiz_1_sub_1,
+			room_quiz_1_sub_2,
+			room_quiz_1_sub_3,
+			room_quiz_1_sub_4,
+			room_quiz_1_sub_5,
+			room_quiz_2,
+			room_quiz_2_sub_1,
+			room_quiz_2_sub_2,
+			room_quiz_2_sub_3,
+			room_quiz_2_sub_4,
+			room_quiz_2_sub_5,
+			room_quiz_3,
+			room_quiz_3_sub_1,
+			room_quiz_3_sub_2,
+			room_quiz_3_sub_3,
+			room_quiz_3_sub_4,
+			room_quiz_3_sub_5,
+		]
+	}
 ]
 sort_items()

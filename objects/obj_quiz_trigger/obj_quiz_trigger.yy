@@ -32,7 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_ow_sign",
+    "path":"sprites/spr_ow_sign/spr_ow_sign.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
