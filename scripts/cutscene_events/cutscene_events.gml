@@ -151,7 +151,7 @@ function cutscene_anim(val1, val2, frames, ease_type, call_method) {
 ///@param {Real} val1				The first value of the animation
 ///@param {Real} val2				The last value of the animation
 ///@param {Real} frames				The duration in frames
-///@param {String|Function|Struct|Asset.GMAnimCurve} ease_type
+///@param {Enum.anime_curve} ease_type
 ///									The easing curve
 ///@param {Id.Instance} inst	The instance to animate
 ///@param {string} var_name	The name of the variable to animate

@@ -2,6 +2,14 @@ climbing = false;
 leader_in_trans = false;
 leader_climbing = false;
 leader_grounded = true;
+leader_attached = true;
+
+leader_spd_y = 0;
+leader_terminal_velocity = 6;
+leader_gravity = .2;
+leader_grab_when_falling = true;
+leader_inv = 0;
+leader_inv_max = 30;
 
 move_buffer = 0;
 current_direction = 90;
@@ -15,12 +23,13 @@ jump_buffer = 0;
 jump_target_tile = noone;
 jump_timer = 0;
 jump_trail_timer = 0;
+jump_canceled = false;
 
 bump_timer = 0;
 bump_off_time = 10;
 bump_buffered_movement = undefined;
 
-call_sprite_set = undefined;
+queued_calls = [];
 buffered_movement = undefined;
 
 sfx_charge = noone;
@@ -34,33 +43,30 @@ __find_tile = function(_reach, _direction, _mode = CLIMB_JUMP_MODE.NEAREST) {
     var current_tile = noone;
     
     with get_leader()
-        current_tile = instance_place(get_leader().x, get_leader().y, o_dev_climb_tile)
+        current_tile = instance_place(get_leader().x, get_leader().y, o_dev_climb_tile);
     
-    with current_tile {
-        var target_tiles = ds_list_create();
-        collision_rectangle_list(
-            get_leader().x + lengthdir_x(10, _direction) + lengthdir_x(10, _direction + 90),
-            get_leader().y + lengthdir_y(10, _direction) + lengthdir_y(10, _direction + 90),
-            get_leader().x + lengthdir_x(_reach + 4, _direction) + lengthdir_x(10, _direction - 90), 
-            get_leader().y + lengthdir_y(_reach + 4, _direction) + lengthdir_y(10, _direction - 90), 
-            o_dev_climb_tile, false, true, target_tiles, false
-        );
+    var target_tiles = ds_list_create();
+    collision_rectangle_list(
+        get_leader().x + lengthdir_x(8, _direction) + lengthdir_x(8, _direction + 90),
+        get_leader().y + lengthdir_y(8, _direction) + lengthdir_y(8, _direction + 90),
+        get_leader().x + lengthdir_x(_reach + 4, _direction) + lengthdir_x(8, _direction - 90), 
+        get_leader().y + lengthdir_y(_reach + 4, _direction) + lengthdir_y(8, _direction - 90), 
+        o_dev_climb_tile, false, false, target_tiles, false
+    );
+    
+    var record_dist = (_mode == CLIMB_JUMP_MODE.NEAREST ? infinity : 0);
+    for (var i = 0; i < ds_list_size(target_tiles); i ++) {
+        if !instance_exists(target_tiles[| i]) || target_tiles[| i] == current_tile || (variable_instance_exists(target_tiles[| i], "can_climb") && !target_tiles[| i].can_climb)
+            continue;
         
-        var record_dist = (_mode == CLIMB_JUMP_MODE.NEAREST ? infinity : 0);
-        for (var i = 0; i < ds_list_size(target_tiles); i ++) {
-            if !instance_exists(target_tiles[| i])
-                continue;
-            
-            var new_dist = point_distance(get_leader().x, get_leader().y, target_tiles[| i].x, target_tiles[| i].y + 2);
-            if (new_dist - record_dist) * (_mode == CLIMB_JUMP_MODE.NEAREST ? 1 : -1) < 0 {
-                record_dist = new_dist;
-                target_tile = target_tiles[| i];
-            };
+        var new_dist = point_distance(get_leader().x, get_leader().y, target_tiles[| i].x, target_tiles[| i].y + 2);
+        if (new_dist - record_dist) * (_mode == CLIMB_JUMP_MODE.NEAREST ? 1 : -1) < 0 {
+            record_dist = new_dist;
+            target_tile = target_tiles[| i];
         };
-        
-        ds_list_destroy(target_tiles);
-    }
+    };
     
+    ds_list_destroy(target_tiles);
     return target_tile;
 }
 
@@ -83,4 +89,25 @@ __climb_stop = function() {
     }
     
     party_fade_in();
+}
+
+__queue_call = function(time, callback) {
+    queued_calls = array_filter(queued_calls, function(n) {
+        return time_source_exists(n) && time_source_get_time_remaining(n) > 0;
+    });
+    
+    var __call = time_source_create(time_source_game, time, time_source_units_frames, callback);
+    time_source_start(__call);
+    array_push(queued_calls, __call);
+    
+    return __call;
+}
+__unqueue_calls = function() {
+    for (var i = 0; i < array_length(queued_calls); i ++) {
+        if time_source_exists(queued_calls[i])
+            time_source_destroy(queued_calls[i]);
+    };
+    queued_calls = array_filter(queued_calls, function(n) {
+        return time_source_exists(n);
+    });
 }

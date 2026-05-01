@@ -1,5 +1,3 @@
-
-
 if jump_timer < 1
     exit;
 

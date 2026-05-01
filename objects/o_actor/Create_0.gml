@@ -89,7 +89,9 @@ is_party = false
 		)
 	}
     s_get_middle_y = function(relative = false) {
-        return (relative ? 0 : y) - myheight/2
+        if is_player && climb_check() 
+            return y;
+        return (relative ? 0 : y) - myheight/2;
     }
 	
 	snapping = 1 // 1 for none
@@ -153,6 +155,7 @@ is_party = false
     dodge_mysoul = noone
     spawn_buffer = 4
     last_walk_frame = 1
+    alpha_mod = 1;
 }
 { // moveables
 	moveable = true // the user-defined one, used in cutscenes and such. not touched by any of the systems in the engine by default
@@ -165,7 +168,6 @@ is_party = false
 	moveable_anim = true
     moveable_recruits = true
     moveable_shop = true
-    moveable_climbing = true
 	
 	_checkmove = function() { // the main function that determines whether the player can move as of right now
 		return moveable 
@@ -178,7 +180,6 @@ is_party = false
 		&& moveable_anim 
         && moveable_recruits
         && moveable_shop
-        && moveable_climbing
 		
 		&& hurt == 0
         && spawn_buffer <= 0

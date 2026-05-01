@@ -28,8 +28,7 @@ function climb_start_nearest() {
 
 /// @desc stops a climb and makes the leader jump to the nearest climb end marker
 function climb_stop_nearest() {
-    if time_source_exists(o_dev_climb_controller.call_sprite_set)
-        call_cancel(o_dev_climb_controller.call_sprite_set);
+    o_dev_climb_controller.__unqueue_calls();
     
     var target_marker = marker_find_closest(get_leader().x, get_leader().y, "climb");
     

@@ -1,6 +1,6 @@
 {
   "$GMSound":"v2",
-  "%Name":"snd_criticalswing",
+  "%Name":"snd_climb_slip",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -10,9 +10,9 @@
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":1.0855329,
+  "duration":0.88666666,
   "exportDir":"",
-  "name":"snd_criticalswing",
+  "name":"snd_climb_slip",
   "parent":{
     "name":"sounds",
     "path":"folders/@Engine/sounds.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_criticalswing.wav",
+  "soundFile":"snd_climb_slip.wav",
   "volume":1.0,
 }
