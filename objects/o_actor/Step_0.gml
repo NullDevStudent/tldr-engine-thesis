@@ -1,5 +1,5 @@
 var currentspd = spd
-var check_canmove = _checkmove()
+var check_canmove = _checkmove() && !climb_check();
 var x_move = 0
 var y_move = 0
 
