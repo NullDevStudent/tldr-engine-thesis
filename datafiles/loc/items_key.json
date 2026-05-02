@@ -12,5 +12,16 @@
     "item_key_cell_phone_cutscene": {
         "en": ["* (You tried to call on the Cell Phone.){stop}", "* It's nothing but garbage noise."],
         "ja": ["＊ (ケータイで　発信してみた){stop}", "＊ 雑音しか聞こえなかった。"]
+    },
+
+    "item_key_claimb_claws": {
+        "en": {
+            "name": "ClaimbClaws",
+            "desc": ["Claws so small they conveniently can't\nbe seen. Use them to climb up obvious walls.", "--"]
+        },
+        "ja": {
+            "name": "ノボるのツメ",
+            "desc": ["とても小さくて　都合よく目に見えないツメ。\n使えば　いかにも登れそうなカベを登れる。", "--"]
+        }
     }
 }

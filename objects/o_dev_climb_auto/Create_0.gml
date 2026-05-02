@@ -3,7 +3,7 @@ buffered = false;
 controlled_activation = false;
 
 trigger_code = function() {
-    if buffered
+    if buffered || !climb_get_enabled()
         return false;
     
     if o_dev_climb_controller.climbing { // stop climbing

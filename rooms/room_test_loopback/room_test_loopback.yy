@@ -36,6 +36,7 @@
     {"name":"inst_15B0E394","path":"rooms/room_test_loopback/room_test_loopback.yy",},
     {"name":"inst_2A959BA3","path":"rooms/room_test_loopback/room_test_loopback.yy",},
     {"name":"inst_2428E8FD","path":"rooms/room_test_loopback/room_test_loopback.yy",},
+    {"name":"inst_38D4428E","path":"rooms/room_test_loopback/room_test_loopback.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -93,6 +94,9 @@
         {"$GMRInstance":"v4","%Name":"inst_2A959BA3","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2A959BA3","objectId":{"name":"o_trigger_warp","path":"objects/o_trigger_warp/o_trigger_warp.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"o_trigger_warp","path":"objects/o_trigger_warp/o_trigger_warp.yy",},"propertyId":{"name":"target_room","path":"objects/o_trigger_warp/o_trigger_warp.yy",},"resource":{"name":"room_test_climbing","path":"rooms/room_test_climbing/room_test_climbing.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"room_test_climbing",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":1.0,"x":280.0,"y":-20.0,},
+        {"$GMRInstance":"v4","%Name":"inst_38D4428E","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_38D4428E","objectId":{"name":"o_ow_chest","path":"objects/o_ow_chest/o_ow_chest.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"o_ow_chest","path":"objects/o_ow_chest/o_ow_chest.yy",},"propertyId":{"name":"item_inside","path":"objects/o_ow_chest/o_ow_chest.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"new item_key_claimbclaws()",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":320.0,"y":190.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"inst_climb","depth":200,"effectEnabled":true,"effectType":null,"gridX":20,"gridY":10,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_7FBED3B7","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7FBED3B7","objectId":{"name":"o_dev_climb_interact","path":"objects/o_dev_climb_interact/o_dev_climb_interact.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":0.5,"x":280.0,"y":130.0,},

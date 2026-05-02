@@ -407,16 +407,18 @@ function item_menu_reaction(item_struct, user = 0) {
 /// @arg {enum.ITEM_TYPE} _item_type by default is equal to `undefined`, which just looks in the same item type as the item ref's item type
 /// @return {bool}
 function item_contains(_item_ref, _item_type = undefined) {
-	var __item = (is_struct(_item_ref) ? _item_ref : new _item_ref());
 	var __iteminst = (is_struct(_item_ref) ? instanceof(_item_ref) : script_get_name(_item_ref));
     
-    _item_type ??= __item.type;
-	var s = item_get_array(__item.type);
-	
+    if is_undefined(_item_type) {
+	   var __item = (is_struct(_item_ref) ? _item_ref : new _item_ref());
+        _item_type = __item.type;
+    }
+    
+	var s = item_get_array(_item_type);
 	for (var i = 0; i < array_length(s); ++i) {
 		if is_undefined(s[i]) || !is_struct(s[i])
 			continue;
-		if instanceof(__item) == __iteminst
+		if instanceof(s[i]) == __iteminst
 			return true;
 	}
 	

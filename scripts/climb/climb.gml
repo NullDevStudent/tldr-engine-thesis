@@ -60,3 +60,13 @@ function climb_stop_nearest() {
 function climb_check() {
     return (instance_exists(o_dev_climb_controller) && o_dev_climb_controller.climbing)
 }
+
+/// @desc returns whether climbing is enabled
+function climb_get_enabled() {
+    if is_bool(global.climbing_enabled) 
+        return global.climbing_enabled;
+    else if is_callable(global.climbing_enabled)
+        return global.climbing_enabled();
+    
+    return global.climbing_enabled;
+}
