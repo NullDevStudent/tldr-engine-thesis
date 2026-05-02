@@ -1,19 +1,16 @@
 {
   "$GMObject":"",
-  "%Name":"o_ui_fuse",
+  "%Name":"o_ow_magicalglass",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"o_ui_fuse",
+  "name":"o_ow_magicalglass",
   "overriddenProperties":[],
   "parent":{
-    "name":"ui",
-    "path":"folders/@Engine/objects/ui.yy",
+    "name":"misc",
+    "path":"folders/@Engine/objects/ow/misc.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -29,11 +26,18 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v2","%Name":"sprite_index","filters":[
+        "GMSprite",
+      ],"listItems":[],"multiselect":false,"name":"sprite_index","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"spr_magicalglass","path":"sprites/spr_magicalglass/spr_magicalglass.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"spr_magicalglass","varType":5,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_dev_magicalglass",
+    "path":"sprites/spr_dev_magicalglass/spr_dev_magicalglass.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

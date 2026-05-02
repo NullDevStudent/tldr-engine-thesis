@@ -70,7 +70,21 @@ __find_tile = function(_reach, _direction, _mode = CLIMB_JUMP_MODE.NEAREST) {
     return target_tile;
 }
 
+__climb_start = function() {
+    climbing = true;
+    
+    get_leader().s_dynamic = false;
+    get_leader().sprite_index = get_leader().s_climb;
+    get_leader().image_index = 0;
+    get_leader().image_speed = 0;
+    
+    __reset_variables();
+    party_fade_out(0);
+    
+}
 __climb_stop = function() {
+    climbing = false;
+    
     for (var i = 1; i < party_length(true); ++i) {
         if instance_exists(party_get_inst(global.party_names[i])) {
             var inst = party_get_inst(global.party_names[i]);
@@ -110,4 +124,25 @@ __unqueue_calls = function() {
     queued_calls = array_filter(queued_calls, function(n) {
         return time_source_exists(n);
     });
+}
+
+__reset_variables = function() {
+    buffered_movement = undefined;
+    jump_canceled = false;
+    current_direction = 90;
+    last_horizontal_direction = 0;
+    
+    leader_inv = 0;
+    leader_spd_y = 0;
+        
+    leader_in_trans = false;
+    leader_climbing = false;
+    leader_grounded = true;
+    leader_attached = true;
+    
+    jump_buffer = 0;
+    bump_timer = 0;
+    jump_timer = 0;
+    jump_target_tile = noone;
+    jump_trail_timer = 0;
 }

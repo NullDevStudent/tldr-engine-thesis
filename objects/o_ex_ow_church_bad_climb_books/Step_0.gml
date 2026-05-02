@@ -6,10 +6,13 @@ if place_meeting(x, y, get_leader()) && o_dev_climb_controller.jump_buffer <= 0 
     
     cutscene_create();
     cutscene_player_canmove(false);
+    
+    cutscene_audio_play(snd_break1, false, .5, 1.2);
+    cutscene_audio_play(snd_break1, false, .2, .75, false,, 3);
     cutscene_sleep(5);
     
     cutscene_audio_play(snd_climb_slip);
-    cutscene_func(audio_play_sound, [snd_climb_slip, 0, 0, 0.6, 1/30, 0.75]);
+    cutscene_audio_play(snd_climb_slip, false, .6, .75, false,, 1);
     
     cutscene_func(function() {
         o_dev_climb_controller.leader_attached = false;

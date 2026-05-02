@@ -89,11 +89,19 @@ function cutscene_instance_create(obj, xx = 0, yy = 0, ddepth = 0, post_var_stru
         event
     );
 }
+
 /// @desc plays a sound during a cutscene
-function cutscene_audio_play(sound, loop = 0, gain = 1, pitch = 1, nonstack = false) {
+/// @param {asset} sound the sound to play
+/// @param {real} [loop] whether the sound should loop after it finishes
+/// @param {real} [gain] the gain of the sound played. will be automatically mulitplied by the volume of the sound type
+/// @param {real} [pitch] the pitch of the sound played. 
+/// @param {bool} [nonstack] whether the sound should not stack if played on the same frame twice
+/// @param {enum.AUDIO} [sound_type] the type of the sound you'd like to play (determines the target emitter)
+/// @param {real} [offset] the offset of the sound (in frames)
+function cutscene_audio_play(sound, loop = 0, gain = 1, pitch = 1, nonstack = false, sound_type = AUDIO.SOUND, offset = 0) {
     var event = new cutscene_event(
-        method({sound, loop, gain, pitch, nonstack}, function() {
-			audio_play(sound, loop, gain, pitch, nonstack);
+        method({sound, loop, gain, pitch, nonstack, sound_type, offset}, function() {
+			audio_play(sound, loop, gain, pitch, nonstack, sound_type, offset);
 		})
     );
     

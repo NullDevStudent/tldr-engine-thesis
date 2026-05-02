@@ -311,10 +311,8 @@ if climbing {
 }
 else {
     leader_climbing = false;
-    if !leader_in_trans && !leader_grounded {
-        get_leader().moveable_climbing = true;
+    if !leader_in_trans && !leader_grounded
         leader_grounded = true;
-    }
 }
 
 depth = get_leader().depth - 100;
