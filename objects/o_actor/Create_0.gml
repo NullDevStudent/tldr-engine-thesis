@@ -65,6 +65,17 @@ is_party = false
 		s_landed = spr_kris_landed
 		s_slide = spr_kris_slide
 		s_run_postfix = ""
+        
+        s_climb = spr_kris_climb;
+        s_climb_charge = spr_kris_climb_charge;
+        s_climb_charge_left = spr_kris_climb_charge_left;
+        s_climb_charge_right = spr_kris_climb_charge_right;
+        s_climb_jump_left = spr_kris_climb_jump_left;
+        s_climb_jump_right = spr_kris_climb_jump_right;
+        s_climb_jump_up = spr_kris_climb_jump_up;
+        s_climb_land_left = spr_kris_climb_land_left;
+        s_climb_land_right = spr_kris_climb_land_right;
+        s_climb_slip_fall = spr_kris_climb_slip_fall;
 	
 		s_walk_ispd = 1
 		s_run_ispd = 2
@@ -78,7 +89,9 @@ is_party = false
 		)
 	}
     s_get_middle_y = function(relative = false) {
-        return (relative ? 0 : y) - myheight/2
+        if is_player && climb_check() 
+            return y;
+        return (relative ? 0 : y) - myheight/2;
     }
 	
 	snapping = 1 // 1 for none
@@ -96,6 +109,7 @@ is_party = false
     flash_color = c_white
 	fsiner = 0 // flash siner
 	flash = 0
+    override_blend = undefined;
     
     // lighting
     lighting_highlight_enabled = true
@@ -141,6 +155,7 @@ is_party = false
     dodge_mysoul = noone
     spawn_buffer = 4
     last_walk_frame = 1
+    alpha_mod = 1;
 }
 { // moveables
 	moveable = true // the user-defined one, used in cutscenes and such. not touched by any of the systems in the engine by default
@@ -192,6 +207,8 @@ __initialize = function() {
 }
 
 if !instance_exists(o_dodge_controller) 
-	instance_create(o_dodge_controller)
+	instance_create(o_dodge_controller);
 if !instance_exists(o_eff_lighting_controller)
-    instance_create(o_eff_lighting_controller)
+    instance_create(o_eff_lighting_controller);
+if !instance_exists(o_dev_climb_controller)
+    instance_create(o_dev_climb_controller);

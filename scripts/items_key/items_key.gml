@@ -36,3 +36,11 @@ function item_key_cell_phone() : item_key() constructor {
     
     item_localize("item_key_cell_phone")
 }
+function item_key_claimbclaws() : item_key() constructor {
+	name = ["ClaimbClaws"];
+	desc = ["Claws so small they conveniently can't\nbe seen. Use them to climb up obvious walls.", "--"];
+	
+    can_use = false;
+    
+    item_localize("item_key_claimb_claws");
+}

@@ -24,6 +24,9 @@ global.menu_page = 0
 global.player_moveable_global = true
 global.border_mode = BORDER_MODE.OFF
 global.console_enabled = true
+global.climbing_enabled = function() {
+    return item_contains(item_key_claimbclaws);
+}
 
 global.party_limit = 3 // set to undefined for unlimited party members
 global.slide_speed = 5
