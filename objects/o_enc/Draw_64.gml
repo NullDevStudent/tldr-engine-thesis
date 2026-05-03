@@ -5,12 +5,22 @@ surface_set_target(surf)
 
 var __roll = lerp(80, 0, ui_main_lerp)
 
+var party_count = array_length(global.party_names);
+
+var panel_width  = (party_count == 4 ? 160 : 213);
+var panel_height = 70;
+var button_width = panel_width - 2;
+
+var total_width = party_count * panel_width;
+var party_xoff_base = 320 - (total_width / 2);
+
+
 draw_clear_alpha(0,0)
 draw_sprite_ext(spr_pixel, 0, 0, 417 - 92 + __roll, 640, 156, 0, c_black, 1)
 draw_sprite_ext(spr_pixel, 0, 0, 417 - 92 + __roll, 640, 2, 0, bcolor, 1)
 
-for (var i = 0; i < party_length(); ++i) {
-    var xoff = i*213 + 319.5 + party_length() * -213/2
+for (var i = 0; i < array_length(global.party_names); ++i) {
+    var xoff = party_xoff_base + i * panel_width;
     var box_base_y = 325 + __roll - 32 * party_ui_lerp[i]
     var member_name = global.party_names[i]
     
@@ -20,13 +30,15 @@ for (var i = 0; i < party_length(); ++i) {
     if party_selection == i 
         col = party_getdata(member_name, "color")
     
-    draw_sprite_ext(spr_pixel, 0, xoff, box_base_y, 213, 70, 0, c_black, 1)
-    draw_sprite_ext(spr_pixel, 0, xoff, box_base_y, 213, 2, 0, col, 1)
-    draw_sprite_ext(spr_pixel, 0, xoff, box_base_y + 37, 213, 2, 0, col, 1)
+draw_sprite_ext(spr_pixel, 0, xoff, box_base_y, panel_width, panel_height, 0, c_black, 1)
+draw_sprite_ext(spr_pixel, 0, xoff, box_base_y, panel_width, 2, 0, col, 1)
+draw_sprite_ext(spr_pixel, 0, xoff, box_base_y + 37, panel_width, 2, 0, col, 1)
+
     
     if party_selection == i {
-        draw_sprite_ext(spr_pixel, 0, xoff + 211, box_base_y, 2, 69, 0, col, 1)
-        draw_sprite_ext(spr_pixel, 0, xoff, box_base_y, 2, 69, 0, col, 1)
+draw_sprite_ext(spr_pixel, 0, xoff + panel_width - 2, box_base_y, 2, panel_height-1, 0, col, 1)
+draw_sprite_ext(spr_pixel, 0, xoff, box_base_y, 2, panel_height-1, 0, col, 1)
+
     }
     
     // draw the icon
@@ -54,17 +66,18 @@ for (var i = 0; i < party_length(); ++i) {
     if string_length(__name) > 5
         __name_font = global.font_name[2]
     
-    draw_set_font(__name_font)
-    draw_text_transformed(51 + xoff, box_base_y + 11, __name, 1, 1, 0)
+    draw_set_font(__name_font) 
+    if party_count != 4 draw_text_transformed(51 + xoff, box_base_y + 11, __name, 1, 1, 0)
     
     // draw the hp bar
     var health_coeff = party_getdata(member_name, "hp") / party_getdata(member_name, "max_hp")
     var health_real = string(party_getdata(member_name, "hp"))
     var health_max = string(party_getdata(member_name, "max_hp"))
     
-    draw_sprite_ext(loc_sprite("menu_caption_hp"), 0, 110 + xoff, box_base_y + 22, 1, 1, 0, c_white, 1)
-    draw_sprite_ext(spr_pixel, 0, 128 + xoff, box_base_y + 22, 76, 9, 0, c_maroon, 1)
-    draw_sprite_ext(spr_pixel, 0, 128 + xoff, box_base_y + 22, 76 * max(0, health_coeff), 9, 0, party_getdata(member_name, "color"), 1)
+   draw_sprite_ext(spr_ui_hp_text, 0, xoff + panel_width - 103, box_base_y + 22, 1, 1, 0, c_white, 1);
+draw_sprite_ext(spr_pixel, 0, xoff + panel_width - 85, box_base_y + 22, 76, 9, 0, c_maroon, 1);
+draw_sprite_ext(spr_pixel, 0, xoff + panel_width - 85, box_base_y + 22, 76 * max(0, health_coeff), 9, 0, party_getdata(member_name, "color"), 1);
+
     
     draw_set_font(global.font_ui_hp)
     draw_set_halign(fa_right)
@@ -74,9 +87,11 @@ for (var i = 0; i < party_length(); ++i) {
     if !party_isup(member_name) 
         draw_set_color(c_red)
     
-    draw_text_transformed(160 + xoff, box_base_y + 9, health_real, 1, 1, 0)
-    draw_sprite_ext(spr_ui_hp_seperator, 0, 161 + xoff, box_base_y + 9, 1, 1, 0, c_white, 1)
-    draw_text_transformed(205 + xoff, box_base_y + 9, health_max, 1, 1, 0)
+draw_text_transformed(xoff + panel_width - 53, box_base_y + 9, health_real, 1, 1, 0);
+draw_sprite_ext(spr_ui_hp_seperator, 0, xoff + panel_width - 52, box_base_y + 9, 1, 1, 0, c_white, 1);
+draw_text_transformed(xoff + panel_width - 8, box_base_y + 9, health_max, 1, 1, 0);
+
+
     
     draw_set_halign(fa_left)
     draw_set_color(c_white)
@@ -84,24 +99,27 @@ for (var i = 0; i < party_length(); ++i) {
     draw_set_alpha(1)
     
     if !surface_exists(party_ui_button_surf[i])
-        party_ui_button_surf[i] = surface_create(211, 33)
+        party_ui_button_surf[i] = surface_create(button_width, 33)
     surface_set_target(party_ui_button_surf[i]) {
         var buttons = party_buttons[i]
         draw_clear_alpha(0,0)
         
         draw_set_color(c_black)
-        draw_rectangle(2, 30 * (1 - party_ui_lerp[i]), 2+211, 30, 0)
+       draw_rectangle(2, 30 * (1 - party_ui_lerp[i]), button_width, 30, 0)
         draw_set_color(bcolor)
-        draw_rectangle(2, 30, 2+210, 33, 0)
+        draw_rectangle(2, 30, button_width-1, 33, 0)
         draw_set_color(c_white)
         
+        // image indexes
         gpu_set_colorwriteenable(1, 1, 1, 0)
         for (var j = 0; j < 3; ++j) {
             var xxoff = ui_party_sticks[j] * 2
             draw_set_color(merge_color(party_getdata(global.party_names[i], "color"), c_black, ui_party_sticks[j]/20))
             
             draw_rectangle(0 + xxoff, 0, 1 + xxoff, 29, 0)
-            draw_rectangle(210 - xxoff, 0, 211 - xxoff, 29, 0)
+            draw_rectangle(button_width-1 - xxoff, 0,
+               button_width - xxoff, 29, 0)
+
         }
         
         draw_set_alpha(1)
@@ -109,13 +127,12 @@ for (var i = 0; i < party_length(); ++i) {
         
         for (var j = 0; j < array_length(buttons); ++j) {
             var __spr = buttons[j].sprite
-            var __x_off = 111 - floor(array_length(buttons)*35/2) + j*35
+            var btn_spacing = (party_count == 4 ? 31 : 35);
+            var __x_off = (button_width/2) - floor(array_length(buttons) * btn_spacing / 2) + j * btn_spacing;
             var __selection = party_button_selection[i]
             
             if array_length(buttons) != 5 // actually center them
-                __x_off = 109 - floor(array_length(buttons)*35/2) + j*35
-            
-            __x_off = round(__x_off)
+                __x_off = 109 - floor(array_length(buttons)*btn_spacing/2) + j*btn_spacing
             
             draw_sprite_ext(spr_pixel, 0, __x_off, 1, 31, 25, 0, c_black, 1)
             if sprite_exists(__spr)
@@ -136,8 +153,8 @@ for (var i = 0; i < party_length(); ++i) {
 draw_sprite_ext(spr_pixel, 0, 0, 363 + __roll, 640, 156, 0, c_black, 1)
 draw_sprite_ext(spr_pixel, 0, 0, 362 + __roll, 640, 3, 0, bcolor, 1)
 
-for (var i = 0; i < party_length(); i ++) { // draw buttons
-    var xoff = i*213 + 319.5 + party_length() * -213/2
+for (var i = 0; i < array_length(global.party_names); i ++) { // draw buttons
+    var xoff = party_xoff_base + i * panel_width;
     if party_ui_lerp[i] > .1 && battle_state == BATTLE_STATE.MENU
         draw_surface(party_ui_button_surf[i], xoff, 332 + __roll)
 }
@@ -227,7 +244,7 @@ else if battle_menu == BATTLE_MENU.INV_SELECTION {
     selected_item_index = clamp(selected_item_index, 0, array_length(list)-1)
     
     for (var i = page_index*6; i < min(page_index*6 + 6, array_length(list)); i ++) {
-        var can_do = enc_item_get_enabled(list[i])
+        var can_do = true
         var txt = item_get_name(list[i])
         var item_xoffset = 0
         
@@ -238,7 +255,7 @@ else if battle_menu == BATTLE_MENU.INV_SELECTION {
                 
                 if list[i].party == -1 {
                     var n_drawn = 0
-                    for (var j = 0; j < party_length(); ++j) {
+                    for (var j = 0; j < array_length(global.party_names); ++j) {
                         if !party_isup(global.party_names[j]) 
                             can_do = false
                         if j == party_selection // don't draw the one calling the act
@@ -283,6 +300,9 @@ else if battle_menu == BATTLE_MENU.INV_SELECTION {
         }
         
         // dim the item color if needed
+        if struct_exists(list[i], "tp_cost") && list[i].tp_cost > 0
+            if tp < list[i].tp_cost 
+                draw_set_color(c_gray)
         if !can_do 
             draw_set_color(c_gray)
         
@@ -307,7 +327,7 @@ else if battle_menu == BATTLE_MENU.INV_SELECTION {
         draw_sprite_ext(spr_ui_arrow_up, 0, 470, 382 + round(sine(12,3)), 1, 1, 0, c_white, 1)
 }
 else if battle_menu == BATTLE_MENU.PARTY_SELECTION {
-    for (var i = 0; i < party_length(); ++i) {
+    for (var i = 0; i < array_length(global.party_names); ++i) {
         draw_text_transformed(80, 375 + 30 * i, party_getname(global.party_names[i]), 2, 2, 0)
         
         if party_ally_selection[party_selection] == i 

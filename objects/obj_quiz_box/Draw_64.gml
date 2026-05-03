@@ -11,4 +11,10 @@ if (is_active) {
         var _color = (selected_index == i) ? c_yellow : c_white;
         draw_text_color(x, y - 20 + (i * 30), options[i], _color, _color, _color, _color, 1);
     }
+    if (answer_feedback != "") {
+        // Change color based on the message
+        var _f_color = (answer_feedback == "Correct!") ? c_lime : c_red;
+        
+        draw_text_color(x, y + 120, answer_feedback, _f_color, _f_color, _f_color, _f_color, 1);
+    }
 }

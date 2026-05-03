@@ -19,11 +19,13 @@ if (!is_active) {
     
     // Press Z again to submit answer
     if (keyboard_check_pressed(ord("Z"))) {
-        if (selected_index == correct_answer) {
-            show_debug_message("Correct!");
-            is_active = false; // Close the box
-        } else {
-            show_debug_message("Wrong!");
-        }
-    }
+	    if (selected_index == correct_answer) {
+	        answer_feedback = "Correct!";
+	        // Use an Alarm to close the box after 1 second (60 frames)
+	        if (alarm[0] == -1) alarm[0] = 60; 
+	    } else {
+	        answer_feedback = "Wrong! Try again.";
+	    }
+	}
+
 }
