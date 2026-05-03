@@ -1,3 +1,6 @@
+image_xscale = width * scale_x;
+image_yscale = height * scale_y; 
+
 if instance_exists(target) {
     if follow_x {
         if climb_check() {

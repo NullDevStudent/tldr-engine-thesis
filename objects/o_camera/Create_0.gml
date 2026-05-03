@@ -25,3 +25,4 @@ camera = camera_create_view(x, y,
 	angle, target, -1, -1,
 	width/scale_x / 2, height/scale_y / 2
 );
+sprite_index = spr_pixel;
