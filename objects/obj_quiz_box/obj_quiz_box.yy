@@ -12,8 +12,8 @@
   "name":"obj_quiz_box",
   "overriddenProperties":[],
   "parent":{
-    "name":"group1",
-    "path":"folders/Objects/group1.yy",
+    "name":"quiz",
+    "path":"folders/Objects/quiz.yy",
   },
   "parentObjectId":null,
   "persistent":false,
