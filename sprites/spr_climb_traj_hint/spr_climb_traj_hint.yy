@@ -27,7 +27,7 @@
   "name":"spr_climb_traj_hint",
   "nineSlice":{
     "$GMNineSliceData":"",
-    "bottom":0,
+    "bottom":5,
     "enabled":true,
     "guideColour":[4294902015,4294902015,4294902015,4294902015,],
     "highlightColour":1728023040,
@@ -43,7 +43,7 @@
       0,
       1,
     ],
-    "top":0,
+    "top":1,
   },
   "origin":9,
   "parent":{

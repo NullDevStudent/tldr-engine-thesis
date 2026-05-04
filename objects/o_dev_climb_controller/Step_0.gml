@@ -70,10 +70,15 @@ if climbing {
                     }
                     // animate them
                     get_leader().sprite_index = charge_sprite;
-                    get_leader().image_index = lerp(0, sprite_get_number(get_leader().sprite_index)-1, jump_reach/jump_reach_max);
+						  if jump_reach/clamp(jump_reach_max, 0, 50) > 2/3
+						      get_leader().image_index = 2;
+						  else if jump_reach/clamp(jump_reach_max, 0, 50) > 1/3
+						      get_leader().image_index = 1;
+                    else
+						      get_leader().image_index = 0;
                     
                     // player charge indicator
-                    if jump_reach/jump_reach_max > 2/3 {
+                    if jump_reach/clamp(jump_reach_max, 0, 50) > 2/3 {
                         get_leader().override_blend = merge_color(get_leader().image_blend, c_teal, 0.4 + floor(sin(jump_timer)) * .4);
                         audio_sound_pitch(sfx_charge, .7);
                         
@@ -84,7 +89,7 @@ if climbing {
                             }
                         }
                     }
-                    else if jump_reach/jump_reach_max > 1/3 {
+                    else if jump_reach/clamp(jump_reach_max, 0, 50) > 1/3 {
                         get_leader().override_blend = merge_color(get_leader().image_blend, c_teal, 0.2 + floor(sin(jump_timer)) * .2);
                         audio_sound_pitch(sfx_charge, .5);
                     }
