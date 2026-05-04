@@ -24,8 +24,8 @@ is_party = false
 	diagonal = true // can move diagonally
 	
 	stepsounds = false
-	stepsound = 0 // if the stepsound was played
 	stepsoundprefix = "snd_step"
+	made_step = 0;
 	
 	spacing = (global.world == WORLD_TYPE.LIGHT ? 15 : 12) // make the party member spacing bigger in the light world
 }
@@ -154,8 +154,12 @@ is_party = false
     dodge_outline_surf = -1
     dodge_mysoul = noone
     spawn_buffer = 4
-    last_walk_frame = 1
+    last_walk_frame = 0;
+    last_walk_buffer = 0;
     alpha_mod = 1;
+    
+    delta_x = 0;
+    delta_y = 0;
 }
 { // moveables
 	moveable = true // the user-defined one, used in cutscenes and such. not touched by any of the systems in the engine by default
@@ -190,6 +194,7 @@ is_party = false
 }
 
 alarm[0] = 1 // initialize if not already initialized on the first frame
+
 __initialize = function() {
     init = true
     
@@ -203,6 +208,22 @@ __initialize = function() {
     	s_hurt = party_getdata(name, "battle_sprites").hurt
     	if autoheight 
     		myheight = party_getbattleheight(name)
+    }
+}
+__step = function(index) {
+    if stepsounds
+        audio_play(asset_get_index(stepsoundprefix + string(index div 2 + 1)));
+    if instance_exists(o_lb_ripple_vision) && index div 2 == 0 {
+        var xx = x + random_range(-4, 4);
+        var yy = y + random_range(-4, 4);
+        
+        var inst = lb_ripple_create(xx, yy, 3, party_getdata(name, "iconcolor"),,,,,,,,, 1/40);
+        inst.hspeed = delta_x;
+        inst.vspeed = delta_y;
+        
+        inst = lb_ripple_create(xx, yy, 2, party_getdata(name, "iconcolor"),,,,,,,,, 1/40);
+        inst.hspeed = delta_x;
+        inst.vspeed = delta_y;
     }
 }
 

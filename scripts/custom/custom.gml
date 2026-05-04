@@ -73,16 +73,16 @@ function camera_stop_animations() {
 }
 
 function camera_confine_x(xx) {
-    xx = xx - o_camera.width/2
-    xx = clamp(xx, 0, room_width - o_camera.width)
+    xx = xx - o_camera.width/2 * o_camera.scale_x;
+    xx = clamp(xx, 0, room_width - (o_camera.width * o_camera.scale_x));
     
-    return xx
+    return xx;
 }
 function camera_confine_y(yy) {
-    yy = yy - o_camera.height/2
-    yy = clamp(yy, 0, room_height - o_camera.height)
+    yy = yy - o_camera.height/2 * o_camera.scale_y;
+    yy = clamp(yy, 0, room_height - (o_camera.height * o_camera.scale_y));
     
-    return yy
+    return yy;
 }
 
 

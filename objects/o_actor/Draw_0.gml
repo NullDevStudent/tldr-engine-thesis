@@ -78,7 +78,7 @@ if instance_exists(o_eff_lighting_controller) && o_eff_lighting_controller.light
     var __l_darken = o_eff_lighting_controller.lighting_darken
     var __l_off = o_eff_lighting_controller.surf_border/2
     
-    if lighting_highlight_enabled {
+    if lighting_highlight_enabled && o_eff_lighting_controller.highlights {
         surface_set_target(o_eff_lighting_controller.surf) {
             gpu_set_fog(true, c_white, 0, 1)
             s_drawer(spr, image_index, 
@@ -100,11 +100,11 @@ if instance_exists(o_eff_lighting_controller) && o_eff_lighting_controller.light
     }
 	
 	// the shadow on the actor
-    if lighting_darken_enabled
+    if lighting_darken_enabled && o_eff_lighting_controller.darken
         lighting_darken_self(s_drawer)
 
 	// the shadow on the ground
-    if lighting_shadow_enabled
+    if lighting_shadow_enabled && o_eff_lighting_controller.shadows
         s_drawer(spr, image_index, 
             xx, yy, 
             image_xscale, anime_curve_lerp(0, -2, __l_alpha, anime_curve.linear), 
