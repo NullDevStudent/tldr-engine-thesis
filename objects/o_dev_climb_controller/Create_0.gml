@@ -14,6 +14,7 @@ leader_inv_max = 30;
 move_buffer = 0;
 current_direction = 90;
 last_horizontal_direction = 0;
+last_direction = 0;
 
 move_reach = 23;
 

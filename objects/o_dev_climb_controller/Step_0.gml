@@ -16,8 +16,31 @@ if climbing {
                 var x_move = InputX(INPUT_CLUSTER.NAVIGATION);
                 var y_move = InputY(INPUT_CLUSTER.NAVIGATION);
                 
-                if x_move != 0 || y_move != 0
-                    current_direction = snap(InputDirection(90, INPUT_CLUSTER.NAVIGATION), 90);
+                if x_move != 0 || y_move != 0 {
+                    var ___reach = InputCheck(INPUT_VERB.SELECT) ? jump_reach_max + 10 : move_reach;
+						  var ___jm = InputCheck(INPUT_VERB.SELECT) ? CLIMB_JUMP_MODE.FURTHEREST : CLIMB_JUMP_MODE.NEAREST;
+                    if InputCheck(INPUT_VERB.RIGHT) and InputCheck(INPUT_VERB.UP) {
+                    	if !__find_tile(___reach, 0, ___jm) and __find_tile(___reach, 90, ___jm) current_direction = 90;
+                    	else if __find_tile(___reach, 0, ___jm) and !__find_tile(___reach, 90, ___jm) current_direction = 0;
+                    	else if last_direction == 0 current_direction = 90 else current_direction = 0;
+                    }
+                    else if InputCheck(INPUT_VERB.LEFT) and InputCheck(INPUT_VERB.UP) {
+                    	if !__find_tile(___reach, 180, ___jm) and __find_tile(___reach, 90, ___jm) current_direction = 90;
+                    	else if __find_tile(___reach, 180, ___jm) and !__find_tile(___reach, 90, ___jm) current_direction = 180;
+                    	else if last_direction == 180 current_direction = 90 else current_direction = 180;
+                    }
+                    else if InputCheck(INPUT_VERB.RIGHT) and InputCheck(INPUT_VERB.DOWN) {
+                    	if !__find_tile(___reach, 0, ___jm) and __find_tile(___reach, 270, ___jm) current_direction = 270;
+                    	else if __find_tile(___reach, 0, ___jm) and !__find_tile(___reach, 270, ___jm) current_direction = 0;
+                    	else if last_direction == 0 current_direction = 270 else current_direction = 0;
+                    }
+                    else if InputCheck(INPUT_VERB.LEFT) and InputCheck(INPUT_VERB.DOWN) {
+                    	if !__find_tile(___reach, 180, ___jm) and __find_tile(___reach, 270, ___jm) current_direction = 270;
+                    	else if __find_tile(___reach, 180, ___jm) and !__find_tile(___reach, 270, ___jm) current_direction = 180;
+                    	else if last_direction == 180 current_direction = 270 else current_direction = 180;
+                    }
+                    else current_direction = snap(InputDirection(90, INPUT_CLUSTER.NAVIGATION), 90);
+                }
                 
                 // charge
                 if (InputCheck(INPUT_VERB.SELECT) && !InputCheck(INPUT_VERB.CANCEL) && jump_buffer <= 0 && !jump_canceled) || jump_timer > 0 {
@@ -47,10 +70,15 @@ if climbing {
                     }
                     // animate them
                     get_leader().sprite_index = charge_sprite;
-                    get_leader().image_index = lerp(0, sprite_get_number(get_leader().sprite_index)-1, jump_reach/jump_reach_max);
+						  if jump_reach/clamp(jump_reach_max, 0, 50) > 2/3
+						      get_leader().image_index = 2;
+						  else if jump_reach/clamp(jump_reach_max, 0, 50) > 1/3
+						      get_leader().image_index = 1;
+                    else
+						      get_leader().image_index = 0;
                     
                     // player charge indicator
-                    if jump_reach/jump_reach_max > 2/3 {
+                    if jump_reach/clamp(jump_reach_max, 0, 50) > 2/3 {
                         get_leader().override_blend = merge_color(get_leader().image_blend, c_teal, 0.4 + floor(sin(jump_timer)) * .4);
                         audio_sound_pitch(sfx_charge, .7);
                         
@@ -61,7 +89,7 @@ if climbing {
                             }
                         }
                     }
-                    else if jump_reach/jump_reach_max > 1/3 {
+                    else if jump_reach/clamp(jump_reach_max, 0, 50) > 1/3 {
                         get_leader().override_blend = merge_color(get_leader().image_blend, c_teal, 0.2 + floor(sin(jump_timer)) * .2);
                         audio_sound_pitch(sfx_charge, .5);
                     }
@@ -131,8 +159,11 @@ if climbing {
                             bump_timer = bump_off_time;
                             bump_buffered_movement = undefined;
                             
+									 last_direction = current_direction;
                             if current_direction % 180 == 0
                                 last_horizontal_direction = current_direction;
+                            if current_direction % 180 == 90
+                                last_vertical_direction = current_direction;
                             
                             get_leader().sprite_index = get_leader().s_climb_charge_left;
                             if last_horizontal_direction == 0
@@ -163,8 +194,11 @@ if climbing {
                         move_buffer = 10;
                         jump_buffer = 0;
                         
+								last_direction = current_direction;
                         if current_direction % 180 == 0
-                            last_horizontal_direction = current_direction;
+                           last_horizontal_direction = current_direction;
+                        if current_direction % 180 == 90
+                           last_vertical_direction = current_direction;
                         
                         animate(get_leader().x, target_tile.x, 8, anime_curve.sine_out, get_leader(), "x");
                         animate(get_leader().y, target_tile.y + 2, 8, anime_curve.sine_out, get_leader(), "y");
@@ -182,8 +216,12 @@ if climbing {
                         bump_timer = bump_off_time;
                         bump_buffered_movement = undefined;
                         
+								
+								last_direction = current_direction;
                         if current_direction % 180 == 0
-                            last_horizontal_direction = current_direction;
+                           last_horizontal_direction = current_direction;
+                        if current_direction % 180 == 90
+                           last_vertical_direction = current_direction;
                         
                         get_leader().sprite_index = get_leader().s_climb_charge_left;
                         if last_horizontal_direction == 0
