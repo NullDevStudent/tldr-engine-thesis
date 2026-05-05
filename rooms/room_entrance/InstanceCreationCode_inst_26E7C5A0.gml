@@ -1,6 +1,6 @@
 trigger_code = function() {
 	cutscene_create()
-	if !obj_quiz_box.is_active {
+	if obj_quiz_box.is_active = true {
 		cutscene_dialogue([
 			"* (An unknown voice echoed inside.)",
 			" {god(1)} FINISH THIS TEST FIRST, OR BE STUCK FOR AN ETERNITY. "
@@ -8,7 +8,7 @@ trigger_code = function() {
 	}
     else{
 		cutscene_dialogue([
-			"* (Complete the test first.)",
+			"* ({god{1}PROCEED.}.)",
 		])
 	}
     

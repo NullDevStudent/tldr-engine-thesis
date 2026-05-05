@@ -1,3 +1,4 @@
-// Alarm 0 Event
-is_active = false;
-answer_feedback = ""; // Reset feedback for next time
+// obj_quiz_box - Alarm 0 Event
+answer_feedback = ""; 
+start_quiz(); 
+
